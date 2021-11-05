@@ -22,7 +22,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesMessariApi(): MessariApi {
+    fun providesAssetsApi(): MessariApi {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .client(okHttpClient)

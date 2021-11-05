@@ -1,6 +1,7 @@
 package daniel.danc.creepycrypto.domain.usecases.get_assets
 
 import daniel.danc.creepycrypto.common.Resource
+import daniel.danc.creepycrypto.domain.models.Assets.Assets
 import daniel.danc.creepycrypto.domain.models.Assets.Data
 import daniel.danc.creepycrypto.domain.repository.AssetRepository
 import kotlinx.coroutines.flow.Flow
@@ -11,11 +12,11 @@ import javax.inject.Inject
 
 class GetAssetsUseCase @Inject constructor(private val repository: AssetRepository) {
 
-    operator fun invoke(): Flow<Resource<List<Data>>> = flow {
+    operator fun invoke(): Flow<Resource<Assets>> = flow {
 
         try {
             emit(Resource.Loading())
-            val coins = repository.getAssets().data
+            val coins = repository.getAssets()
             emit(Resource.Success(coins))
 
         } catch (e: HttpException) {
